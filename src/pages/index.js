@@ -1,26 +1,31 @@
 import * as React from "react"
 
 // turn to switch statement
+
+const homePageSwitch = (slide) => {
+switch(slide) {
+  case 1:
+    return <h1>Slide one</h1>;
+  case 2:
+    return <h1>SLIDE TWO</h1>;
+  default:
+    return <p> </p>;
+}
+}
+
 const HomepageContent = (props) => {
-  if (props.slide == 1) {
     return (
-      <h1>Slide one</h1>
-    )
-  } else if (props.slide == 2) {
-    return (
-      <h1>SLIDE TWO</h1>
+     <> {homePageSwitch(props.slide)}</>
     )
   }
-  return <></>
-}
 
 const NavigateContent = (props) => {
   return (<>
     {!props.headerShow &&
-    <div className="align-center text-center bt-7 mt-7">
-      <p onClick={() => props.setSlide(1)} className="align-center font-bold fill-stone-600">ROADMAP</p>
-      <p onClick={() => props.setSlide(2)} className="align-center font-bold fill-stone-600">CATALOGUE</p>
-      <p className="align-center font-bold fill-stone-600">CONTACT US</p>
+    <div className="align-center text-center bt-7 mt-7 ">
+      <p onClick={() => props.setSlide(1)} className={`cursor-pointer align-center font-bold ${props.slide===1 ? 'text-stone-400 ' : "text-stone-600"}  `}>ROADMAP</p>
+      <p onClick={() => props.setSlide(2)} className={`cursor-pointer align-center font-bold ${props.slide===2 ? 'text-stone-400 ' : "text-stone-600"} `}>CATALOGUE</p>
+      <p className="cursor-pointer align-center font-bold fill-stone-600">CONTACT US</p>
     </div>} </>
   )
 }
@@ -52,7 +57,7 @@ const IndexPage = () => {
   return (
     <main className="container mx-auto">
       <title>Home Page</title>
-      <div className="grid grid-cols-1 w-1/2 md:w-1/3 mt-28 md:mt-60 my-auto rounded-3xl mx-auto shadow-lg">
+      <div className="grid grid-cols-1 w-3/4 md:w-1/3 mt-28 md:mt-60 my-auto rounded-3xl mx-auto shadow-lg">
         <img className="mt-10 w-1/2 mx-auto" src="otb.png" />
 
         <IndexContent headerShow={headerShow} setHeaderShow={setHeaderShow}></IndexContent>
