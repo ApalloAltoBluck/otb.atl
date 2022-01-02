@@ -8,6 +8,10 @@ p {
     font-family:"DM Sans"
 }
 
+:root {
+  --swiper-navigation-size: 24px !important;
+}
+
 body {
     opacity: 1;
     animation: fade 2s linear;
@@ -17,4 +21,9 @@ body {
 @keyframes fade {
   0% { opacity: 0 }
   100% { opacity: 1 }
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color:darkgrey !important;
+  width:3vh !important;
 }

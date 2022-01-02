@@ -1,32 +1,59 @@
 import * as React from "react"
 
-// turn to switch statement
+import SwiperCore, {
+  Autoplay,
+  EffectFade,
+  Pagination,
+  Navigation
+} from "swiper";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import Swiper core and required modules
+
+
+SwiperCore.use([Autoplay, EffectFade, Pagination, Navigation]);
+
 
 const homePageSwitch = (slide) => {
-switch(slide) {
-  case 1:
-    return <h1>Slide one</h1>;
-  case 2:
-    return <h1>SLIDE TWO</h1>;
-  default:
-    return <p> </p>;
-}
+  switch (slide) {
+
+    case 1:
+      return <div className="  bg-zinc-100 w-1/2 mx-auto h-56 rounded-xl shadow-inner"><h1 className="mt-24 text-center my-auto">Roadmap.pdf</h1></div> ;
+    case 2:
+      return <Swiper
+        slidesPerView={1}
+        className=" h-56 w-1/2 mx-auto rounded-2xl shadow-inner "
+        navigation
+      >
+        <SwiperSlide className="h-56 w-3/4 text-center shadow-inner bg-zinc-100"><p className="mt-24">Product 1</p></SwiperSlide>
+        <SwiperSlide className=" h-56 text-center bg-zinc-100 shadow-inner "><p className="mt-24">Product 2</p></SwiperSlide>
+        <SwiperSlide className=" h-56 text-center bg-zinc-100 shadow-inner"><p className="mt-24">Product 3</p></SwiperSlide>
+      </Swiper>;
+    default:
+      return <p> </p>;
+  }
 }
 
 const HomepageContent = (props) => {
-    return (
-     <> {homePageSwitch(props.slide)}</>
-    )
-  }
+  return (
+    <> {homePageSwitch(props.slide)}</>
+  )
+}
 
 const NavigateContent = (props) => {
   return (<>
     {!props.headerShow &&
-    <div className="align-center text-center bt-7 mt-7 ">
-      <p onClick={() => props.setSlide(1)} className={`cursor-pointer align-center font-bold ${props.slide===1 ? 'text-stone-400 ' : "text-stone-600"}  `}>ROADMAP</p>
-      <p onClick={() => props.setSlide(2)} className={`cursor-pointer align-center font-bold ${props.slide===2 ? 'text-stone-400 ' : "text-stone-600"} `}>CATALOGUE</p>
-      <p className="cursor-pointer align-center font-bold fill-stone-600">CONTACT US</p>
-    </div>} </>
+      <div className="align-center text-center bt-7 mt-7 ">
+        <p onClick={() => props.setSlide(1)} className={`cursor-pointer align-center font-bold ${props.slide === 1 ? 'text-stone-400 ' : "text-stone-600"}  `}>ROADMAP</p>
+        <p onClick={() => props.setSlide(2)} className={`cursor-pointer align-center font-bold ${props.slide === 2 ? 'text-stone-400 ' : "text-stone-600"} `}>CATALOGUE</p>
+        <p onClick={() => props.setSlide(3)} className={`cursor-pointer align-center font-bold  fill-stone-600 ${props.slide === 3 ? 'text-stone-400 ' : "text-stone-600"}`}>CONTACT US</p>
+      </div>} </>
   )
 }
 const IndexContent = (props) => {
@@ -36,10 +63,10 @@ const IndexContent = (props) => {
       {props.headerShow &&
         <div className="mx-auto mt-10 mb-10"  >
 
-          <p className="text-black m-3 uppercase text-xs md:text-md text-large text-center w-3/4 mx-auto "><b>sign up to receive information and updates on upcoming releases, products, and other news.</b></p>
+          <p className="text-black m-3 uppercase text-xs md:text-md text-large text-center w-3/4 mx-auto"><b>sign up to receive information and updates on upcoming releases, products, and other news.</b></p>
           <div className="mx-auto flex justify-center">
             <div className=" w-3/4">
-              <input type="text" id="fname" placeholder="YOUR EMAIL" className="h-3/4 shadow border rounded w-full py-2 px-3 text-gray-700 appearance-none leading-tight focus:outline-none focus:shadow-outline w-50" ></input>
+              <input type="text" id="fname" placeholder="YOUR EMAIL" className="h-3/4 shadow border text-center rounded w-full py-2 px-3 text-gray-700 appearance-none leading-tight focus:outline-none focus:shadow-outline w-50" ></input>
             </div>
           </div>
           <div className="w-1/2 mx-auto l:w-1/5 rounded-full whitespace-nowrap pb-1 outline outline-2 font-bold text-xs my-auto pl-4 pr-4 pt-1 text-center mt-3 " onClick={() => props.setHeaderShow(false)}>SIGN UP</div>
@@ -57,7 +84,7 @@ const IndexPage = () => {
   return (
     <main className="container mx-auto">
       <title>Home Page</title>
-      <div className="grid grid-cols-1 w-3/4 md:w-1/3 mt-28 md:mt-60 my-auto rounded-3xl mx-auto shadow-lg">
+      <div className="grid grid-cols-1 w-3/4 md:w-1/3 mt-36 rounded-3xl mx-auto shadow-lg">
         <img className="mt-10 w-1/2 mx-auto" src="otb.png" />
 
         <IndexContent headerShow={headerShow} setHeaderShow={setHeaderShow}></IndexContent>
