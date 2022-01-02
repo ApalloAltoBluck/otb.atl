@@ -12,6 +12,10 @@ p {
   --swiper-navigation-size: 24px !important;
 }
 
+
+.container {
+  height:100vh;
+}
 body {
     opacity: 1;
     animation: fade 2s linear;
@@ -26,4 +30,10 @@ body {
 .swiper-button-next, .swiper-button-prev {
   color:darkgrey !important;
   width:3vh !important;
+}
+
+.homepage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

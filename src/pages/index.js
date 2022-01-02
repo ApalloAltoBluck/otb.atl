@@ -82,9 +82,9 @@ const IndexPage = () => {
   const [slide, setSlide] = React.useState(0)
 
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto homepage">
       <title>Home Page</title>
-      <div className="grid grid-cols-1 w-3/4 md:w-1/3 mt-36 rounded-3xl mx-auto shadow-lg">
+      <div className="grid grid-cols-1 w-3/4 md:w-1/3  rounded-3xl mx-auto shadow-lg">
         <img className="mt-10 w-1/2 mx-auto" src="otb.png" />
 
         <IndexContent headerShow={headerShow} setHeaderShow={setHeaderShow}></IndexContent>
