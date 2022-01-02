@@ -125,11 +125,25 @@ const links = [
   },
 ]
 
-const NavigateContent = () => {
+// turn to switch statement
+const HomepageContent = (props) => {
+  if (props.slide==1) {
+      return (
+        <h1>Slide one</h1>
+      )
+  } else if (props.slide==2) {
+    return (
+      <h1>SLIDE TWO</h1>
+    )
+  }
+  return <></>
+}
+
+const NavigateContent = (props) => {
   return (
     <div className="align-center text-center mt-7">
-      <p className="align-center font-bold fill-stone-600">ROADMAP</p>
-      <p className="align-center font-bold fill-stone-600">CATALOGUE</p>
+      <p onClick={() => props.setSlide(1)} className="align-center font-bold fill-stone-600">ROADMAP</p>
+      <p onClick={() => props.setSlide(2)} className="align-center font-bold fill-stone-600">CATALOGUE</p>
       <p className="align-center font-bold fill-stone-600">CONTACT US</p>
     </div>
   )
@@ -144,7 +158,7 @@ const IndexContent = (props) => {
   <p className="text-black m-3 uppercase text-xs md:text-md text-large text-center "><b>sign up to receive information and updates on upcoming releases, products, and other news.</b></p>
   <div className="mx-auto flex justify-center">
   <input type="text" id="fname" placeholder="YOUR EMAIL" className="  rounded-lg origin-center w-1/2 bg-gray-800 text-white" ></input> 
-  <div className="break-before-page  rounded-full pb-1 outline outline-2 font-bold text-xs pl-5 pr-5 pt-1" onClick={() => props.setHeaderShow(false)}>SIGN UP</div>
+  <div className="break-before-page  rounded-full pb-1 outline outline-2 font-bold text-xs pl-5 pr-5 pt-1" onClick={() => props.setHeaderShow(false) }>SIGN UP</div>
   </div>
 </div>
 }
@@ -154,14 +168,18 @@ const IndexContent = (props) => {
 // markup
 const IndexPage = () => {
   const [headerShow, setHeaderShow] = React.useState(true)
+  const [slide, setSlide] = React.useState(0)
+
   return (
     <main className="container mx-auto">
       <title>Home Page</title>
-      <div className="grid grid-cols-1 w-1/2 md:w-1/3 mt-28 md:mt-60 my-auto rounded-3xl mx-auto bg-slate-50 shadow-lg">
+      <div className="grid grid-cols-1 w-1/2 md:w-1/3 mt-28 md:mt-60 my-auto rounded-3xl mx-auto shadow-lg">
       <img className="mt-10 w-1/2 mx-auto" src="otb.png" />
 
     <IndexContent headerShow ={headerShow} setHeaderShow={setHeaderShow}></IndexContent>
-    <NavigateContent></NavigateContent>
+    <HomepageContent slide={slide}></HomepageContent>
+    <NavigateContent slide={slide} setSlide={setSlide}></NavigateContent>
+
     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="24" height="24"
 viewBox="0 0 24 24" className="mx-auto m-10"
