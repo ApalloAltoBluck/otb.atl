@@ -7,3 +7,14 @@
 p {
     font-family:"DM Sans"
 }
+
+body {
+    opacity: 1;
+    animation: fade 2s linear;
+}
+
+
+@keyframes fade {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
