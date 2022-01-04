@@ -36,9 +36,9 @@ const homePageSwitch = (slide) => {
         className="w-1/2 mx-auto rounded-2xl shadow-inner "
         navigation
       >
-        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' autoPlay loop muted src = {'./1.mp4'} /></SwiperSlide>
-        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' autoPlay loop muted src = {'./2.mp4'} /></SwiperSlide>
-        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' autoPlay loop muted src = {'./3.mp4'} /></SwiperSlide>
+        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' playsInline autoPlay loop muted src = {'./1.mp4'} /></SwiperSlide>
+        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' playsInline autoPlay loop muted src = {'./2.mp4'} /></SwiperSlide>
+        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' playsInline autoPlay loop muted src = {'./3.mp4'} /></SwiperSlide>
       </Swiper>;
     default:
       return <p> </p>;
