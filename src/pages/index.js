@@ -25,6 +25,7 @@ SwiperCore.use([Autoplay, EffectFade, Pagination, Navigation]);
 
 
 const homePageSwitch = (slide) => {
+
   switch (slide) {
 
     case 1:
@@ -32,12 +33,12 @@ const homePageSwitch = (slide) => {
     case 2:
       return <Swiper
         slidesPerView={1}
-        className=" h-56 w-1/2 mx-auto rounded-2xl shadow-inner "
+        className="w-1/2 mx-auto rounded-2xl shadow-inner "
         navigation
       >
-        <SwiperSlide className="h-56 w-3/4 text-center shadow-inner bg-zinc-100"><p className="mt-24">Product 1</p></SwiperSlide>
-        <SwiperSlide className=" h-56 text-center bg-zinc-100 shadow-inner "><p className="mt-24">Product 2</p></SwiperSlide>
-        <SwiperSlide className=" h-56 text-center bg-zinc-100 shadow-inner"><p className="mt-24">Product 3</p></SwiperSlide>
+        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' autoPlay loop muted src = {'./1.mp4'} /></SwiperSlide>
+        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' autoPlay loop muted src = {'./2.mp4'} /></SwiperSlide>
+        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' autoPlay loop muted src = {'./3.mp4'} /></SwiperSlide>
       </Swiper>;
     default:
       return <p> </p>;
@@ -86,12 +87,21 @@ const IndexPage = () => {
   const [slide, setSlide] = React.useState(0)
   
 
+
+
+  React.useEffect(() => {
+    if (document.getElementById('video')) {
+    let video = document.getElementById('video');
+    video.play();
+    }
+  })
+
   return (
     <main className="container mx-auto homepage">
       <title>Home Page</title>
       <div className="grid grid-cols-1 w-3/4 md:w-1/3 bg-white rounded-3xl mx-auto shadow-lg">
 
-        <img className="mt-10 w-1/2 mx-auto" src="otb-grain.svg" />
+        <img className="mt-10 mb-10 w-1/2 mx-auto" src="otb-grain.svg" />
       
         <IndexContent headerShow={headerShow} setHeaderShow={setHeaderShow}></IndexContent>
         <HomepageContent slide={slide}></HomepageContent>
