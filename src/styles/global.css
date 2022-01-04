@@ -10,7 +10,12 @@ p {
 
 :root {
   --swiper-navigation-size: 24px !important;
+  background-image: url('/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+
 
 
 .container {
