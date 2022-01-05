@@ -6,6 +6,7 @@ import SwiperCore, {
   Pagination,
   Navigation
 } from "swiper";
+import { StaticImage } from "gatsby-plugin-image"
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -14,8 +15,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-
-import AutoHeight from 'react-auto-height'
+import videoOne from '../assets/1.mp4';
+import videoTwo from '../assets/2.mp4';
+import videoThree from '../assets/3.mp4';
 
 
 // import Swiper core and required modules
@@ -36,9 +38,9 @@ const homePageSwitch = (slide) => {
         className="w-1/2 mx-auto rounded-2xl shadow-inner "
         navigation
       >
-        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' playsInline autoPlay loop muted src = {'./1.mp4'} /></SwiperSlide>
-        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' playsInline autoPlay loop muted src = {'./2.mp4'} /></SwiperSlide>
-        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-black"><video id='video' playsInline autoPlay loop muted src = {'./3.mp4'} /></SwiperSlide>
+        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src = {videoOne} /> <p className=" text-center uppercase text-xs">Long Sleeve OTB blank</p></SwiperSlide>
+        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src = {videoTwo} /><p className=" text-center uppercase text-xs">T-Shirt OTB blank</p></SwiperSlide>
+        <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src = {videoThree} /><p className=" text-center uppercase text-xs">Hoodie OTB blank</p></SwiperSlide>
       </Swiper>;
     default:
       return <p> </p>;
@@ -102,6 +104,7 @@ const IndexPage = () => {
       <div className="grid grid-cols-1 w-3/4 md:w-1/3 bg-white rounded-3xl mx-auto shadow-lg">
 
         <img className="mt-10 mb-10 w-1/2 mx-auto" src="otb-grain.svg" />
+
       
         <IndexContent headerShow={headerShow} setHeaderShow={setHeaderShow}></IndexContent>
         <HomepageContent slide={slide}></HomepageContent>
