@@ -1,5 +1,5 @@
 import * as React from "react"
-
+import {useState} from "react"
 import SwiperCore, {
   Autoplay,
   EffectFade,
@@ -8,6 +8,8 @@ import SwiperCore, {
 } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion"
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -36,6 +38,7 @@ const homePageSwitch = (slide) => {
         slidesPerView={1}
         className="w-3/4 mx-auto rounded-2xl shadow-inner "
         navigation
+        loop={true}
       >
         <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src = {videoOne} /> <p className=" text-center uppercase text-xs">LS3001</p></SwiperSlide>
         <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src = {videoTwo} /><p className=" text-center uppercase text-xs">SS3001</p></SwiperSlide>
@@ -82,6 +85,61 @@ const IndexContent = (props) => {
     </>
   )
 }
+
+function LoopObject() {
+return (
+<div className="absolute backgroundImage  z-0">
+<motion.svg className="h-1/2" xmlns="http://www.w3.org/2000/svg" initial={false}  viewBox="0 0 1431.09 625">
+  <g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1">
+    <motion.path className="cls-1" 
+      strokeWidth="0"
+     initial={{
+      rotate: -15, 
+      skew:0
+    }}
+    animate={{
+      rotate: 0, 
+      skew:25
+
+
+    }}
+    
+    transition={{
+      repeat: Infinity,
+      repeatType: "reverse",
+      duration: 10,
+
+    }}
+    d="M1424.91,312.74c-3.53-42.57-59.15-70-144.28-106.49C954.51,66.53,791.45-3.33,610.74,7,475.47,14.73,386.61,48.63,226,110.06,134.56,145,1.34,202,6.13,261.21,8,284.89,31.66,303,53.89,315.3,156,370.69,351.35,474.86,492.08,536.57c15.09,6.61,35.12,15.18,61.06,24.7,16.08,5.9,142.1,51.64,250,57.22,115.07,6,212.86-40.74,350.4-106.5C1304,440.05,1430.46,379.59,1424.91,312.74Z"/>
+    <motion.path
+     className="cls-2"
+     initial={{
+      rotate: -15, 
+      skew:0
+
+
+    }}
+    animate={{
+      rotate:0, 
+      skew:25
+
+    }}
+    
+    transition={{
+      repeat: Infinity,
+      repeatType: "reverse",
+      duration: 10
+      
+    }}
+    strokeWidth="0"
+     d="M968,436.42c-137.59,17.46-171.12-10.73-350.4-85.89C565.45,329.45,517,311.57,435.54,275c-86.56-38.9-110-53.8-109.93-72.15.07-32.75,74.81-58,116.8-72.14,237.48-66.28,250.58-10.95,584,109.93,102.71,38.31,142.25,49.81,144.28,75.58C1174.54,364.93,1040.06,413.36,968,436.42Z"/></g>
+    </g>
+    </motion.svg>
+    </div>
+)
+}
+
+
 // markup
 const IndexPage = () => {
   const [headerShow, setHeaderShow] = React.useState(true)
@@ -99,11 +157,12 @@ const IndexPage = () => {
 
   return (
     <main className="container mx-auto homepage">
-      <title>Home Page</title>
-      <div className="grid grid-cols-1 w-3/4 md:w-1/3 bg-white rounded-3xl mx-auto shadow-lg">
+      <title>OTB.ATL | HOME </title>
+      <LoopObject/>
+
+      <div className="grid grid-cols-1 z-10 w-3/4 md:w-1/3 bg-white rounded-3xl mx-auto shadow-lg">
 
         <img className="mt-10 mb-10 w-1/4 mx-auto" src="otb-grain.svg" />
-
       
         <IndexContent headerShow={headerShow} setHeaderShow={setHeaderShow}></IndexContent>
         <HomepageContent slide={slide}></HomepageContent>

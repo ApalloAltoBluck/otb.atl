@@ -10,15 +10,16 @@ p {
 
 :root {
   --swiper-navigation-size: 24px !important;
-  background-image: url('/background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-x: center !important;
+
 
 }
+.cls-1,.cls-2{stroke:#000;stroke-miterlimit:10;stroke-width:12px;}.cls-2{fill:#fff;}
 
-
-
+.backgroundImage {
+  overflow:hidden;
+  position:fixed;
+  width:150%;
+}
 
 .container {
   height:100vh;
