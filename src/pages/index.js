@@ -25,21 +25,7 @@ import videoThree from '../assets/3.mp4';
 
 // import Swiper core and required modules
 
-if (typeof window !== `undefined`) { // or typeof document !== 'undefined'
-  document.querySelector("form").addEventListener("submit", handleSubmit);
-}
 
-const handleSubmit = (e) => {
-  e.preventDefault()
-  let myForm = document.getElementById('contact');
-  let formData = new FormData(myForm)
-  fetch('/', {
-    method: 'POST',
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(formData).toString()
-  }).then(() => console.log('Form successfully submitted')).catch((error) =>
-    alert(error))
-}
 SwiperCore.use([Autoplay, EffectFade, Pagination, Navigation]);
 
 
