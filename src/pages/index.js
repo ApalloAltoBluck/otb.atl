@@ -46,6 +46,21 @@ const homePageSwitch = (slide) => {
         <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src={videoTwo} /><p className=" text-center uppercase text-xs">SS3001</p></SwiperSlide>
         <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src={videoThree} /><p className=" text-center uppercase text-xs"> HD4151</p></SwiperSlide>
       </Swiper>;
+    case 3:
+      return(<form name="contact" method="POST" data-netlify="true" className="rounded px-8 pt-6 mb-4">
+      <p>
+        <label className="uppercase font-bold text-xs">Your Name <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="text" name="name" /></label>   
+      </p>
+      <p>
+        <label className="uppercase font-bold text-xs">Your Email <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" name="email" /></label>
+      </p>
+      <p>
+        <label className="uppercase font-bold text-xs">Message <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="message"></textarea></label>
+      </p>
+      <p>
+        <button className="bg-black text-xs rounded-2xl h-1/4 w-32 mx-auto text-white font-bold py-2 px-4 align-middle focus:outline-none uppercase focus:shadow-outline" type="submit">Send</button>
+      </p>
+    </form>)
     default:
       return <p> </p>;
   }
@@ -153,7 +168,7 @@ const IndexPage = () => {
   React.useEffect(() => {
     if (document.getElementById('video')) {
       let video = document.getElementById('video');
-      // video.play();
+      video.play();
 
     }
   })
