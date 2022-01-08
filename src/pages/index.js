@@ -25,8 +25,9 @@ import videoThree from '../assets/3.mp4';
 
 // import Swiper core and required modules
 
-
-document && document.querySelector("form").addEventListener("submit", handleSubmit);
+if (typeof window !== `undefined`) { // or typeof document !== 'undefined'
+  document.querySelector("form").addEventListener("submit", handleSubmit);
+}
 
 const handleSubmit = (e) => {
   e.preventDefault()
