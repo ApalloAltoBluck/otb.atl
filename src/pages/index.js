@@ -57,8 +57,11 @@ const homePageSwitch = (slide) => {
 function SignupForm(props) {
   const [state, handleSubmit] = useForm("mvolgnzg");
   if (state.succeeded) {
+    localStorage.setItem('submitted-form', 'true')
      props.setHeaderShow(false)
   }
+
+
   return (
       <form onSubmit={handleSubmit}>
       <input
@@ -239,7 +242,9 @@ const IndexPage = () => {
     if (document.getElementById('video')) {
       let video = document.getElementById('video');
       video.play();
-
+    }
+    if(localStorage.getItem('submitted-form') === 'true'){
+        setHeaderShow(false);
     }
   })
 
