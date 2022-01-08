@@ -47,7 +47,7 @@ const homePageSwitch = (slide) => {
         <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src={videoThree} /><p className=" text-center uppercase text-xs"> HD4151</p></SwiperSlide>
       </Swiper>;
     case 3:
-      return(<form name="contact" netlify method="POST" data-netlify="true" className="rounded px-8 pt-6 mb-4">
+      return(<form name="contact" netlify="true" method="POST" data-netlify="true" className="rounded px-8 pt-6 mb-4">
       <p>
         <label className="uppercase font-bold text-xs">Your Name <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="text" name="name" /></label>   
       </p>
