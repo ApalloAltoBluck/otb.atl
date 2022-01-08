@@ -22,6 +22,7 @@ import videoOne from '../assets/1.mp4';
 import videoTwo from '../assets/2.mp4';
 import videoThree from '../assets/3.mp4';
 
+import { useForm, ValidationError } from '@formspree/react';
 
 // import Swiper core and required modules
 
@@ -47,24 +48,51 @@ const homePageSwitch = (slide) => {
         <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src={videoThree} /><p className=" text-center uppercase text-xs"> HD4151</p></SwiperSlide>
       </Swiper>;
     case 3:
-      return(<form name="contact" netlify="true" method="POST" data-netlify="true" className="rounded px-8 pt-6 mb-4">
-      <p>
-        <label className="uppercase font-bold text-xs">Your Name <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="text" name="name" /></label>   
-      </p>
-      <p>
-        <label className="uppercase font-bold text-xs">Your Email <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" name="email" /></label>
-      </p>
-      <input type="hidden" name="form-name" value="contact" />
-      <p>
-        <label className="uppercase font-bold text-xs">Message <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="message"></textarea></label>
-      </p>
-      <p>
-        <button className="bg-black text-xs rounded-2xl h-1/4 w-32 mx-auto text-white font-bold py-2 px-4 align-middle focus:outline-none uppercase focus:shadow-outline" type="submit">Send</button>
-      </p>
-    </form>)
+      return(<ContactForm></ContactForm>)
     default:
       return <p> </p>;
   }
+}
+
+function SignupForm(props) {
+  const [state, handleSubmit] = useForm("mvolgnzg");
+  if (state.succeeded) {
+     props.setHeaderShow(false)
+  }
+  return (
+      <form onSubmit={handleSubmit}>
+      <input
+        id="email"
+        type="email" 
+        name="email"
+        required="true"
+        placeholder="YOUR EMAIL" className="h-1/2 p-1 mx-auto text-xs shadow border flex text-center rounded align-middle  text-gray-700 appearance-none leading-tight focus:outline-none focus:shadow-outline w-3/4"
+      />
+      <ValidationError 
+        prefix="Email" 
+        field="email"
+        errors={state.errors}
+      />
+
+      <button className="w-1/2 flex text-center mx-auto rounded-md l:w-1/5 whitespace-nowrap pb-1 text-white bg-slate-900 outline outline-2 font-bold text-xs my-auto pt-1 justify-center mt-3" type="submit"   disabled={state.submitting}>
+        SIGN UP
+      </button>
+    </form>
+  );
+}
+
+const IndexContent = (props) => {
+  return (
+
+    <>
+      {props.headerShow &&
+        <div className="mx-auto mt-10 mb-10"  >
+          <p className="text-black m-3 uppercase text-xs md:text-md text-large text-center rounded-md w-3/4 mx-auto"><b>sign up to receive information and updates on upcoming releases, products, and other news.</b></p>
+          <SignupForm setHeaderShow={props.setHeaderShow}/>
+        </div>
+      }
+    </>
+  )
 }
 
 const HomepageContent = (props) => {
@@ -83,26 +111,67 @@ const NavigateContent = (props) => {
       </div>} </>
   )
 }
-const IndexContent = (props) => {
+
+
+function ContactForm() {
+  const [state, handleSubmit] = useForm("xjvlkdgo");
+  if (state.succeeded) {
+      return <p className="text-center uppercase text-sm font-bold w-1/2 mx-auto">Thanks for writing us! We'll get back to you soon.</p>;
+  }
   return (
+      <form onSubmit={handleSubmit} className="w-3/4 mx-auto">
+        <p>
+        <label className="uppercase font-bold text-xs">Your Name
+         <input         required="true"
+ className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="text" name="name" />
+         </label>   
+      </p>
+      <ValidationError 
+        prefix="name" 
+        field="name"
+        errors={state.errors}
+      />
 
-    <>
-      {props.headerShow &&
-        <div className="mx-auto mt-10 mb-10"  >
+      <label className="uppercase font-bold text-xs" htmlFor="email">
+        Email Address
+      </label>
+      <input
+        id="email"
+        type="email" 
+        name="email"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 
-          <p className="text-black m-3 uppercase text-xs md:text-md text-large text-center rounded-fill w-3/4 mx-auto"><b>sign up to receive information and updates on upcoming releases, products, and other news.</b></p>
-          <div className="mx-auto flex justify-center">
-            <div className=" w-3/4">
-              <input type="text" id="fname" placeholder="YOUR EMAIL" className="h-3/4 shadow border text-center rounded w-full py-2 px-3 text-gray-700 appearance-none leading-tight focus:outline-none focus:shadow-outline w-50" ></input>
-            </div>
-          </div>
-          <div className="w-1/2 mx-auto l:w-1/5 whitespace-nowrap pb-1 outline outline-2 font-bold text-xs my-auto pl-4 pr-4 pt-1 text-center mt-3 " onClick={() => props.setHeaderShow(false)}>SIGN UP</div>
+        required="true"
 
-        </div>
-      }
-    </>
-  )
+      />
+      <ValidationError 
+        prefix="Email" 
+        field="email"
+        errors={state.errors}
+      />
+            <label className="uppercase font-bold text-xs" htmlFor="email">
+        Your Message
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        required="true"
+      />
+      <ValidationError 
+        prefix="Message" 
+        field="message"
+        errors={state.errors}
+      />
+
+     
+<button className="w-1/2 flex text-center mx-auto rounded-md l:w-1/5 whitespace-nowrap pb-1 text-white bg-slate-900 outline outline-2 font-bold text-xs my-auto pt-1 justify-center mt-3" type="submit"   disabled={state.submitting}>
+        SIGN UP
+      </button>
+    </form>
+  );
 }
+
 
 function LoopObject() {
   return (
@@ -209,7 +278,7 @@ const IndexPage = () => {
         </a>
       </div>
 
-      <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=TUVy85"></script>
+
     </main>
   )
 }
