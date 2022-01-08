@@ -8,7 +8,7 @@ import SwiperCore, {
 } from "swiper";
 
 import { Helmet } from "react-helmet"
-
+import { navigate } from "gatsby";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion"
 
@@ -26,6 +26,19 @@ import videoThree from '../assets/3.mp4';
 // import Swiper core and required modules
 
 
+document.querySelector("form").addEventListener("submit", handleSubmit);
+
+const handleSubmit = (e) => {
+  e.preventDefault()
+  let myForm = document.getElementById('contact');
+  let formData = new FormData(myForm)
+  fetch('/', {
+    method: 'POST',
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString()
+  }).then(() => console.log('Form successfully submitted')).catch((error) =>
+    alert(error))
+}
 SwiperCore.use([Autoplay, EffectFade, Pagination, Navigation]);
 
 
@@ -47,13 +60,14 @@ const homePageSwitch = (slide) => {
         <SwiperSlide className="h-1/2 w-3/4 text-center shadow-inner bg-white"><video id='video' playsInline autoPlay loop muted src={videoThree} /><p className=" text-center uppercase text-xs"> HD4151</p></SwiperSlide>
       </Swiper>;
     case 3:
-      return(<form name="contact" method="POST" data-netlify="true" className="rounded px-8 pt-6 mb-4">
+      return(<form name="contact" netlify method="POST" data-netlify="true" className="rounded px-8 pt-6 mb-4">
       <p>
         <label className="uppercase font-bold text-xs">Your Name <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="text" name="name" /></label>   
       </p>
       <p>
         <label className="uppercase font-bold text-xs">Your Email <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" name="email" /></label>
       </p>
+      <input type="hidden" name="form-name" value="contact" />
       <p>
         <label className="uppercase font-bold text-xs">Message <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="message"></textarea></label>
       </p>
