@@ -35,7 +35,7 @@ const homePageSwitch = (slide) => {
   switch (slide) {
 
     case 1:
-      return <div className="  bg-zinc-100 w-1/2 mx-auto h-56 rounded-xl shadow-inner"><a className="mt-24 text-center flex justify-center underline my-auto">Roadmap.pdf</a></div>;
+      return <div className="  bg-zinc-100 w-1/2 mx-auto h-56 rounded-xl shadow-inner"><a href="/roadmap.pdf" className="mt-24 text-center flex justify-center underline my-auto">Roadmap.pdf</a></div>;
     case 2:
       return <Swiper
         slidesPerView={1}
