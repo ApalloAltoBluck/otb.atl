@@ -34,8 +34,6 @@ const homePageSwitch = (slide) => {
 
   switch (slide) {
 
-    case 1:
-      return <div className="  bg-zinc-100 w-1/2 mx-auto h-56 rounded-xl shadow-inner"><a href="/roadmap.pdf" className="mt-24 text-center flex justify-center underline my-auto">Roadmap.pdf</a></div>;
     case 2:
       return <Swiper
         slidesPerView={1}
@@ -108,7 +106,6 @@ const NavigateContent = (props) => {
   return (<>
     {!props.headerShow &&
       <div className="align-center text-center bt-7 mt-7 ">
-        <p onClick={() => props.setSlide(1)} className={`cursor-pointer align-center font-bold ${props.slide === 1 ? 'text-stone-400 ' : "text-stone-600"}  `}>ROADMAP</p>
         <p onClick={() => props.setSlide(2)} className={`cursor-pointer align-center font-bold ${props.slide === 2 ? 'text-stone-400 ' : "text-stone-600"} `}>CATALOGUE</p>
         <p onClick={() => props.setSlide(3)} className={`cursor-pointer align-center font-bold  fill-stone-600 ${props.slide === 3 ? 'text-stone-400 ' : "text-stone-600"}`}>CONTACT US</p>
       </div>} </>
