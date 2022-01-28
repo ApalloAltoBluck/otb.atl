@@ -104,7 +104,7 @@ function SignupForm(props) {
         <div style={{position: 'absolute', left: '-5000px'}} aria-hidden="true"><input type="text" name="b_5ff1c86d00f08d5be0c5da5a7_29e71e047d" tabIndex={-1} defaultValue /></div>
         <div className="optionalParent">
           <div className="clear foot">
-            <input type="submit" className="w-1/2 flex text-center mx-auto rounded-md l:w-1/5 whitespace-nowrap pb-1 text-white bg-slate-900 outline outline-2 font-bold text-xs my-auto pt-1 justify-center mt-3" value="CONTACT US" name="subscribe" id="mc-embedded-subscribe" defaultValue="Subscribe" name="subscribe" id="mc-embedded-subscribe" />
+            <input type="submit" className="w-1/2 flex text-center mx-auto rounded-md l:w-1/5 whitespace-nowrap pb-1 text-white bg-slate-900 outline outline-2 font-bold text-xs my-auto pt-1 justify-center mt-3" value="SIGN UP" name="subscribe" id="mc-embedded-subscribe" defaultValue="Subscribe" name="subscribe" id="mc-embedded-subscribe" />
           </div>
         </div>
       </div>
