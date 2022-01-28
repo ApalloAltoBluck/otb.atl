@@ -6,12 +6,14 @@ import SwiperCore, {
   Pagination,
   Navigation
 } from "swiper";
+import { useForm, ValidationError } from '@formspree/react';
 
 import { Helmet } from "react-helmet"
 import { navigate } from "gatsby";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion"
 
+import DOMPurify from 'dompurify';
 
 // Import Swiper styles
 import "swiper/css";
@@ -22,7 +24,7 @@ import videoOne from '../assets/1.mp4';
 import videoTwo from '../assets/2.mp4';
 import videoThree from '../assets/3.mp4';
 
-import { useForm, ValidationError } from '@formspree/react';
+import $ from "jquery";
 
 // import Swiper core and required modules
 
@@ -53,32 +55,63 @@ const homePageSwitch = (slide) => {
 }
 
 function SignupForm(props) {
-  const [state, handleSubmit] = useForm("mvolgnzg");
-  if (state.succeeded) {
-    localStorage.setItem('submitted-form', 'true')
-     props.setHeaderShow(false)
-  }
+  const [submitText, setSubmitText] = useState(null);
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: 'https://otbatl.us20.list-manage.com/subscribe/post-json?u=5ff1c86d00f08d5be0c5da5a7&id=29e71e047d&c=?',
+      data: $('#mc-embedded-subscribe-form').serialize(),
+      cache: false,
+      dataType: 'json',
+      contentType: "application/json; charset=utf-8",
+      success: (res) => {
+        // localStorage.setItem('submitted-form', 'true')
+        if (res.result === 'error') {
+          console.log(res)
+          if (new String(res.msg).includes('is already subscribed')){
+            props.setHeaderShow(false)
 
+          }else {
+          setSubmitText({__html: DOMPurify.sanitize(res.msg)});
+          }
+        } else {
+          props.setHeaderShow(false)
+        }
+    
+      },
+      error: (error) => {
+        alert(error)
+        setSubmitText({__html: DOMPurify.sanitize(error.msg)});
+      }
+
+    });
+  };
   return (
-      <form onSubmit={handleSubmit}>
-      <input
-        id="email"
-        type="email" 
-        name="email"
-        required="true"
-        placeholder="YOUR EMAIL" className="h-1/2 p-1 mx-auto text-xs shadow border flex text-center rounded align-middle  text-gray-700 appearance-none leading-tight focus:outline-none focus:shadow-outline w-3/4"
-      />
-      <ValidationError 
-        prefix="Email" 
-        field="email"
-        errors={state.errors}
-      />
-
-      <button className="w-1/2 flex text-center mx-auto rounded-md l:w-1/5 whitespace-nowrap pb-1 text-white bg-slate-900 outline outline-2 font-bold text-xs my-auto pt-1 justify-center mt-3" type="submit"   disabled={state.submitting}>
-        SIGN UP
-      </button>
+    <>
+    {submitText && <p className="text-center uppercase text-xs m-5 font-bold w-1/2 mx-auto" dangerouslySetInnerHTML={submitText}></p>}
+    <div id="mc_embed_signup">
+    <form onSubmit={handleSubmit} id={'mc-embedded-subscribe-form'} className="w-3/4 mx-auto">
+        <div id="mc_embed_signup_scroll">
+        <div className="mc-field-group">
+          <input type="email" placeholder="YOUR EMAIL"  name="EMAIL" className="required email" id="mce-EMAIL"  className="h-1/2 p-1 mx-auto text-xs shadow border flex text-center rounded align-middle  text-gray-700 appearance-none leading-tight focus:outline-none focus:shadow-outline w-3/4" />
+        </div>
+        <div id="mce-responses" className="clear foot">
+          <div className="response" id="mce-error-response" style={{display: 'none'}} />
+          <div className="response" id="mce-success-response" style={{display: 'none'}} />
+        </div>    {/* real people should not fill this in and expect good things - do not remove this or risk form bot signups*/}
+        <div style={{position: 'absolute', left: '-5000px'}} aria-hidden="true"><input type="text" name="b_5ff1c86d00f08d5be0c5da5a7_29e71e047d" tabIndex={-1} defaultValue /></div>
+        <div className="optionalParent">
+          <div className="clear foot">
+            <input type="submit" className="w-1/2 flex text-center mx-auto rounded-md l:w-1/5 whitespace-nowrap pb-1 text-white bg-slate-900 outline outline-2 font-bold text-xs my-auto pt-1 justify-center mt-3" value="CONTACT US" name="subscribe" id="mc-embedded-subscribe" defaultValue="Subscribe" name="subscribe" id="mc-embedded-subscribe" />
+          </div>
+        </div>
+      </div>
     </form>
+    </div>
+    </>
+    
   );
 }
 
@@ -114,60 +147,21 @@ const NavigateContent = (props) => {
 
 
 function ContactForm() {
-  const [state, handleSubmit] = useForm("xjvlkdgo");
+  const [state, handleSubmit] = useForm("xnqwpqnd");
   if (state.succeeded) {
-      return <p className="text-center uppercase text-sm font-bold w-1/2 mx-auto">Thanks for writing us! We'll get back to you soon.</p>;
-  }
+    return <p className="text-center uppercase text-sm font-bold w-1/2 mx-auto">Thanks for contacting us!</p>;
+}
+
   return (
-      <form onSubmit={handleSubmit} className="w-3/4 mx-auto">
-        <p>
-        <label className="uppercase font-bold text-xs">Your Name
-         <input         required="true"
- className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="text" name="name" />
-         </label>   
-      </p>
-      <ValidationError 
-        prefix="name" 
-        field="name"
-        errors={state.errors}
-      />
-
-      <label className="uppercase font-bold text-xs" htmlFor="email">
-        Email Address
-      </label>
-      <input
-        id="email"
-        type="email" 
-        name="email"
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-
-        required="true"
-
-      />
-      <ValidationError 
-        prefix="Email" 
-        field="email"
-        errors={state.errors}
-      />
-            <label className="uppercase font-bold text-xs" htmlFor="email">
-        Your Message
-      </label>
-      <textarea
-        id="message"
-        name="message"
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        required="true"
-      />
-      <ValidationError 
-        prefix="Message" 
-        field="message"
-        errors={state.errors}
-      />
-
-     
-<button className="w-1/2 flex text-center mx-auto rounded-md l:w-1/5 whitespace-nowrap pb-1 text-white bg-slate-900 outline outline-2 font-bold text-xs my-auto pt-1 justify-center mt-3" type="submit"   disabled={state.submitting}>
-        SIGN UP
-      </button>
+      <form onSubmit={handleSubmit} id={'mc-embedded-subscribe-form'} className="w-3/4 mx-auto">
+              <label className="uppercase font-bold text-xs" htmlFor="mce-FNAME">YOUR NAME </label>
+              <input  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="FNAME"  id="mce-FNAME" /> <br />
+              <label  className="uppercase font-bold text-xs" htmlFor="mce-EMAIL">Email Address 
+              </label>
+              <input  type="email" name="EMAIL" className="required email shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="mce-EMAIL" />
+              <label className="uppercase font-bold text-xs" htmlFor="mce-MMERGE3">MESSAGE </label>
+              <input type="text"  className="required email shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="MMERGE3" id="mce-MMERGE3" />
+                          <input type="submit" className="w-1/2 flex text-center mx-auto rounded-md l:w-1/5 whitespace-nowrap pb-1 text-white bg-slate-900 outline outline-2 font-bold text-xs my-auto pt-1 justify-center mt-3" value="CONTACT US" name="subscribe" id="mc-embedded-subscribe"  />
     </form>
   );
 }
