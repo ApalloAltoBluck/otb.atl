@@ -360,7 +360,7 @@ const IndexPage = () => {
           property="og:description"
           content="OTB is an apparel manufacturer, designer and distributor of premier blank apparel."
         />
-        <meta property="og:image" content={"./background.jpg"} />
+        <meta property="og:image" content="/background.jpg" />
         <meta property="og:url" content="otbatl.us" />
         <meta property="og:site_name" content="Outside the Box | Home" />
         <link rel="icon" type="image/svg" href="otb-grain.svg" sizes="16x16" />
